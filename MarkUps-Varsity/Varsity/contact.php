@@ -1,7 +1,6 @@
 <?php
 if($_POST)
 {
-//require('constant.php');
     
     $user_name      = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
     $user_email     = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
@@ -32,22 +31,9 @@ if($_POST)
 	}
 	
 	//reCAPTCHA validation
-	if (isset($_POST['g-recaptcha-response'])) {
-		
-		require('component/recaptcha/src/autoload.php');		
-		
-		$recaptcha = new \ReCaptcha\ReCaptcha('6LfOJ58UAAAAAF30fAuHWA4-KAnBP6RETUnGoaKk
-', new \ReCaptcha\RequestMethod\SocketPost());
-
-		$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
-
-		  if (!$resp->isSuccess()) {
-				$output = json_encode(array('type'=>'error', 'text' => '<b>Captcha</b> Validation Required!'));
-				die($output);				
-		  }	
-	}
 	
-	$toEmail = "abhishek89c@gmail.com","info@saiomscapital.com";
+	
+	$toEmail = "coralflavours@gmail.com","info@cloralflavours.com";
 	$mailHeaders = "From: " . $user_name . "<" . $user_email . ">\r\n";
 	$mailBody = "User Name: " . $user_name . "\n";
 	$mailBody .= "User Email: " . $user_email . "\n";
